@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="lib/d3.v3.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="graph-diagram.js"></script>
+  <link rel="stylesheet" href="style/graph-diagram.css" type="text/css">
+  <link rel="stylesheet" href="style/graph-style-bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="lib/bootstrap.css" type="text/css">
+  <title>Graph Diagram Example</title>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Graph Diagram Example</h1>
+
+  <p>This is a simple example of including a graph diagram in an HTML page.
+    View the <a href="javascript:location='view-source:'+location">source of this page</a> to see the moving parts.</p>
+
+	
+	<ul class="graph-diagram-markup" data-internal-scale="1.07" data-external-scale="1">
+  <li class="node" data-node-id="0" data-x="-21.22090265025263" data-y="63.37918466554786">
+    <span class="caption">Sequence</span><dl class="properties"><dt>id</dt><dd>sample_id</dd><dt>sample_identifier</dt><dd>sample</dd></dl></li>
+  <li class="node" data-node-id="1" data-x="-21.22090265025263" data-y="-156.72259329276972">
+    <span class="caption">Host</span><dl class="properties"><dt>species</dt><dd>species</dd></dl></li>
+  <li class="node" data-node-id="3" data-x="264.9771780013794" data-y="-305.3207241338909">
+    <span class="caption">Strain Name</span><dl class="properties"><dt>subtype</dt><dd>subtype</dd></dl></li>
+  <li class="node" data-node-id="5" data-x="236.9397948238093" data-y="156.5553988534619">
+    <span class="caption">Submitter</span><dl class="properties"><dt>name</dt><dd>name</dd><dt>center</dt><dd>center</dd></dl></li>
+  <li class="node" data-node-id="7" data-x="477.577621763776" data-y="40.6675483861722">
+    <span class="caption">Sequencing Technology</span><dl class="properties"><dt>Sequencing_Technology</dt><dd>Sequencing_Technology</dd><dt>{Illumina</dt><dd>IonTorrent}</dd></dl></li>
+  <li class="node" data-node-id="8" data-x="-284.66654626318564" data-y="-270.74128488155463">
+    <span class="caption">Country</span><dl class="properties"><dt>usa</dt><dd>usa</dd></dl></li>
+  <li class="relationship" data-from="0" data-to="1">
+    <span class="type">SEQUENCED</span>
+  </li>
+  <li class="relationship" data-from="0" data-to="5">
+    <span class="type">SUBMITTED</span><dl class="properties"><dt>date</dt><dd>date</dd></dl></li>
+  <li class="relationship" data-from="5" data-to="7">
+    <span class="type">USED</span>
+  </li>
+  <li class="relationship" data-from="1" data-to="8">
+    <span class="type">FOUND_IN</span>
+  </li>
+  <li class="relationship" data-from="3" data-to="1">
+    <span class="type">INFECTED_BY</span>
+  </li>
+</ul>
+ 
+  
+  <p>The approach uses SVG replacement. You write HTML, and the library replaces it with SVG. The important steps are:</p>
+
+  <ul>
+    <li>Reference the <a href="graph-diagram.js">javascript</a> and its corresponding <a href="style/graph-editor.css">CSS</a>.</li>
+    <li>Write a <code>&lt;figure&gt;</code> tag, containing HTML markup that defines the graph.</li>
+    <li>Later on, include a tiny bit of javascript to call rendering library at the right point of the page lifecycle
+      (move this to document.ready block if you do that sort of thing)</li>
+  </ul>
+
+  <p>The library will insert SVG inside the <code>&lt;figure&gt;</code> element, and the CSS will hide the markup you wrote.
+    You'll see a picture of the graph, rendered as SVG.</p>
+</div>
+
+<script type="text/javascript">
+  d3.selectAll( "figure.graph-diagram" )
+          .call( gd.figure() );
+</script>
+
+</body>
+</html>
